@@ -5,6 +5,7 @@ import cron.scheduler.main.CronScheduler;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,6 +20,7 @@ public class RollingLog {
         FileOutputStream fos = null;
         int fileCount = 0;
         long nextRollTime = 0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z"	);
         while (true) {
             long now = System.currentTimeMillis();
             if (fos == null || now > nextRollTime) {
@@ -26,7 +28,7 @@ public class RollingLog {
                 fileCount++;
                 nextRollTime = cronScheduler.getNextTime(TimeUnit.MILLISECONDS);
             }
-            fos.write((now + ": some log statement\n").getBytes());
+            fos.write((simpleDateFormat.format(now) + ": some log statement\n").getBytes());
             Thread.sleep(100);
         }
     }
