@@ -16,12 +16,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class PullingData {
     public static void main(String[] args) throws IOException, InterruptedException {
-        URL url = new URL("https://www.reddit.com/r/programming.json?sort=top");
-
+        final URL url = new URL("https://www.reddit.com/r/programming.json?sort=top");
         // trigger every 1 minute
         CronScheduler cronScheduler = new CronScheduler("* * * * *");
-        
-        
+
         do {
             long now = System.currentTimeMillis();
             long nextPullTime = cronScheduler.getNextTime(TimeUnit.MILLISECONDS);

@@ -1,8 +1,6 @@
 package cron.scheduler.examples;
 
 import cron.scheduler.main.CronScheduler;
-
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -24,7 +22,7 @@ public class RollingLog {
         while (true) {
             long now = System.currentTimeMillis();
             if (fos == null || now > nextRollTime) {
-                fos = new FileOutputStream(new File(fileName + ((fileCount > 0)  ? "." + fileCount : "")));
+                fos = new FileOutputStream(fileName + ((fileCount > 0)  ? "." + fileCount : ""));
                 fileCount++;
                 nextRollTime = cronScheduler.getNextTime(TimeUnit.MILLISECONDS);
             }

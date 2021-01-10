@@ -1,5 +1,3 @@
-package cron.scheduler.test;
-
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
